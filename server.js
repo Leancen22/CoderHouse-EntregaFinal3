@@ -268,12 +268,13 @@ app.post('/carrito/compra_finalizada', async (req, res) => {
     if (carrito != null) {
         await enviarEmailCompra(user, carrito)
         await sendMensajeCompra(user, carrito)
+        await CarritoDao.borrarTodosLosProductos(email)
     }
     console.log(usuario, email, carrito.productos)
 })
 
 
-/*---------------------------------------------------*/
+/*----------------------- Productos ----------------------------*/
 
 app.post('/productos', async (req, res) => {
     try {
@@ -284,6 +285,23 @@ app.post('/productos', async (req, res) => {
         logger.error(`Ha ocurrido un error ${error}`)
     }
 })
+
+app.get('/productos/:categoria', async (req, res) => {
+    const categoria_producto = req.params.categoria
+    
+    const productos = await ProductoDao.listarAllObj(categoria_producto)
+
+    const productos_especificos = productos.filter(prod => prod.categoria == categoria_producto)
+
+    if (productos_especificos != null) {
+        res.json(productos_especificos)
+    } else {
+        res.send('No hay productos con esa categoria')
+    }
+
+})
+
+/*--------------------------------------------------------------*/
 
 app.get('*', (req, res) => {
     let ruta = req.url

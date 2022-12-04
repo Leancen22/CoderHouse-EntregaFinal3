@@ -19,13 +19,15 @@ html(lang="en")
                             p Nombre
                             p Precio
                             p Foto
+                            p Categoria
                             p Cantidad
                         each producto in valores_carrito 
                             div(class="producto")    
                                 p=producto.title
                                 p=producto.price 
                                 div(class="img-container")
-                                    img(src=producto.thumbnail)
+                                    img(src=producto.thumbnail width="30")
+                                p=producto.categoria
                                 p=producto.cantidad
 
                     button(class="comprar btn btn-success mt-3") Comprar

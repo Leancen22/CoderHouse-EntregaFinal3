@@ -85,7 +85,7 @@ const enviarEmailCompra = async (user, compra) => {
     const mailOptions = {
         from: 'NodeJS app <no-reply@example.com>',
         to: EMAIL_ACCOUNT,
-        subject: "Nuevo registro",
+        subject: "Nuevo pedido",
     }
 
     let html =  `<h1>Nuevo pedido de ${username}!</h1>

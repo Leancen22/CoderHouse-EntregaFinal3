@@ -53,6 +53,7 @@ producto_especifico.forEach( (btn) => {
             id: e.target.dataset.id,
             title: e.target.parentElement.children[0].textContent,
             price: e.target.parentElement.children[1].textContent,
+            categoria: e.target.parentElement.children[2].textContent,
             thumbnail: e.target.parentElement.querySelector('img').src,
             cantidad: 1
         };
