@@ -37,7 +37,7 @@ import testProductos from "./src/routers/test_productos.router.js"
 import ContenedorArchivo from './src/Containers/ContainerArchivo.js'
 import {ProductoDao, UsuarioDao, CarritoDao} from "./src/index.js";
 
-import {enviarEmail, enviarEmailCompra} from './utils/mensajes.js'
+import {enviarEmail, enviarEmailCompra, sendMensajeCompra} from './utils/mensajes.js'
 
 app.use('/', processRouter)
 app.use('/api/productos_test', testProductos)
@@ -267,6 +267,7 @@ app.post('/carrito/compra_finalizada', async (req, res) => {
     const carrito = await CarritoDao.listarUno({email})
     if (carrito != null) {
         await enviarEmailCompra(user, carrito)
+        await sendMensajeCompra(user, carrito)
     }
     console.log(usuario, email, carrito.productos)
 })

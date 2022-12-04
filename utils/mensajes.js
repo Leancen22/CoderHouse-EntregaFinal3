@@ -1,9 +1,50 @@
 import {createTransport} from 'nodemailer'
+import twilio from 'twilio'
+
 import dotenv from 'dotenv'
 dotenv.config()
 
 const EMAIL_ACCOUNT = process.env.EMAIL
 const EMAIL_PASSWORD = process.env.PASSWORD
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID
+const authToken = process.env.TWILIO_AUTH_TOKEN
+
+const client = twilio(accountSid, authToken)
+
+
+const sendMensajeCompra = async (user, compra) => {
+    const { username, email, direccion, edad, telefono } = user;
+
+    let body = `Nuevo pedido de ${username}`
+
+    const productos = compra.productos
+
+    productos.forEach(prod => body += `
+        ${prod.title} ${prod.price} x${prod.cantidad}
+    `)
+
+    
+
+    try {
+
+        await client.messages.create({
+            from: process.env.TWILIO_NUMBER,
+            body: body,
+            to: process.env.MI_NUMERO,
+        })
+
+        await client.messages.create({
+            from: process.env.TWILIO_NUMBER,
+            body: `Hola ${username}, hemos recibido tu pedido y lo estamos procesando!, Muchas gracias`,
+            to: `whatsapp:${telefono}`,
+        })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 const transporter = createTransport({
     service: 'gmail',
@@ -79,6 +120,6 @@ const enviarEmailCompra = async (user, compra) => {
     }
 }
 
-export {enviarEmail, enviarEmailCompra}
+export {enviarEmail, enviarEmailCompra, sendMensajeCompra}
 
 
