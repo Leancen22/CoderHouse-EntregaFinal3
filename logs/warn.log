@@ -1858,3 +1858,19 @@
 [2022-12-04T15:07:54.544] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
 [2022-12-04T15:07:57.323] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
 [2022-12-04T15:08:01.406] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:32:27.467] [ERROR] default - Error al levantar Error: listen EADDRINUSE: address already in use :::8081
+[2022-12-04T15:34:48.185] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:34:52.304] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:36:31.694] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:36:33.971] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:00.257] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:14.000] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:20.378] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:26.734] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:48.776] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:50.528] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:37:54.490] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:38:14.349] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:38:31.370] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:38:32.726] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
+[2022-12-04T15:38:39.784] [WARN] default - Ruta /favicon.ico con metodo GET no implementada
