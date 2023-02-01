@@ -1,62 +1,20 @@
-import express from 'express'
-const productosRouter = express.Router()
-import { logger, Ruta } from '../../utils/logger.config.js'
+import { Router } from "express"
+const productosRouter = Router()
 
-import {CarritoDao, ProductoDao} from '../index.js'
+import { guardar_producto, listar_categoria, listar_productos, borrar_producto, borrar_productos, editar_producto, listar_producto } from "../Controllers/productos.controller.js"
 
-productosRouter.get('/', async (req, res) => {
-    Ruta(req)
-    res.status(200).json(await ProductoDao.listarAll())
-})
+productosRouter.get('/', listar_productos)
 
-productosRouter.get('/:id', async (req, res) => {
-    try {
-        Ruta(req)
-        const productos = await ProductoDao.listarAll()
-        const index = productos.findIndex(o => (o.id || o._id) == req.params.id)
+productosRouter.get('/:id', listar_producto)
 
-        if (index != -1) {
-            res.json(await ProductoDao.listar(req.params.id))
-        } else {
-            res.send('No se escontro el producto solicitado')
-        }
+productosRouter.post('/', guardar_producto)
 
-    }catch (e) {
-        logger.error(`Error ocurrido en productos ${e}`)
-        res.json({code: 500, msg: `Error al obtener por id: ${e}`})
-    }
-})
+productosRouter.post('/productos_categoria', listar_categoria)
 
-productosRouter.post('/', async (req, res) => {
-    Ruta(req)
-    logger.error(`Error ocurrido en productos ${e}`)
-    await ProductoDao.guardar({...req.body})
-    console.log(req.body)
-    res.status(201).json({code: 201, msg: 'Nuevo producto agregado'})
-})
+productosRouter.put('/:id', editar_producto)
 
-productosRouter.put('/:id', async (req, res) => {
-    try {
-        Ruta(req)
-        await ProductoDao.actualizar(req.params.id, {...req.body})
-        res.status(200).json({code: 200, msg: 'Actualizado'})
-    } catch (e) {
-        logger.error(`Error ocurrido en productos ${e}`)
-        res.status(404).json({code: 404, msg: `Error ${e}`})
-    }
-})
+productosRouter.delete('/:id', borrar_producto)
 
-productosRouter.delete('/:id', async (req, res) => {
-    Ruta(req)
-    await ProductoDao.borrar(req.params.id)
-    logger.error(`Error ocurrido en productos ${e}`)
-    res.status(200).json({code: 200, msg: "Producto borrado exitosamente"})
-})
-
-productosRouter.delete('/', async (req, res) => {
-    Ruta(req)
-    logger.error(`Error ocurrido en productos ${e}`)
-    res.status(200).json(await ProductoDao.borrarAll())
-})
+productosRouter.delete('/', borrar_productos)
 
 export default productosRouter

@@ -12,6 +12,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN
 
 const client = twilio(accountSid, authToken)
 
+
 const sendMensajeCompra = async (user, compra) => {
     const { username, email, direccion, edad, telefono } = user;
 

@@ -1,11 +1,19 @@
 import ContainerMongo from "../../Containers/ContainerMongo.js";
+import CarritosModel from "../../Models/carrito.models.js";
+
+
+let instance = null
 
 class CarritosDaoMongo extends ContainerMongo {
     constructor() {
-        super('carritos', {
-            productos: {type: [], required: true},
-            email: {type: String, require: true}
-        });
+        super(CarritosModel);
+    }
+
+    static getInstance() {
+      if (!instance) {
+        instance = new CarritosDaoMongo()
+      }
+      return instance
     }
 
     async guardar(carrito = { productos: [] }) {
@@ -14,7 +22,7 @@ class CarritosDaoMongo extends ContainerMongo {
 
     async listarUno(objeto) {
         try {
-          return await this.collecion.findOne(objeto);
+          return await this.collection.findOne(objeto);
         } catch (error) {
           console.log(error);
         }
@@ -22,7 +30,7 @@ class CarritosDaoMongo extends ContainerMongo {
 
     async agregarProducto(email, elem) {
         try {
-            await this.collecion.updateOne({ email }, { $push: { productos: elem } })
+            await this.collection.updateOne({ email }, { $push: { productos: elem } })
         } catch (error) {
             console.log(error)
         }
@@ -30,7 +38,7 @@ class CarritosDaoMongo extends ContainerMongo {
 
     async deleteProducto(email, id) {
         try {
-          await this.collecion.updateOne({ email }, { $pull: { productos: { id } } });
+          await this.collection.updateOne({ email }, { $pull: { productos: { id } } });
         } catch (error) {
           logError(error);
         }
@@ -38,7 +46,7 @@ class CarritosDaoMongo extends ContainerMongo {
 
     async borrarTodosLosProductos(email) {
         try {
-          await this.collecion.updateOne({ email }, { $set: { productos: [] } });
+          await this.collection.updateOne({ email }, { $set: { productos: [] } });
         } catch (error) {
           logError(error);
         }
