@@ -65,7 +65,7 @@ export const post_registro = async (req, res) => {
     if (usuario) {
         res.redirect('/error-registro')
     } else {
-        await api.guardar({username, password: await generateHashPassword(password), email, telefono, edad, direccion, avatar, admin: false})
+        await api.guardar({username, password: await generateHashPassword(password), email, telefono, edad, direccion, avatar, admin: true})
         await api_carrito.guardar({email, productos: []})  
         const carrito = await api_carrito.listarUno({ email })
         await enviarEmail(req.body)
