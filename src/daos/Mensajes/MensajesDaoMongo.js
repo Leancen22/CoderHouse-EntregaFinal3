@@ -15,16 +15,6 @@ class MensajesDaosMongo extends ContainerMongo {
         }
         return instance
     }
-
-    async listarPorEmail(email) {
-        try {
-            const mensajes = await api.find({email: email});
-            return mensajes
-        } catch (error) {
-            // logger.error(`Un error ha ocurrido al listar los mensajes para el correo ${email}: ${error}`);
-            console.log({error: `Un error ha ocurrido al listar los mensajes para el correo ${email}`});
-        }
-    }
 }
 
 export default MensajesDaosMongo

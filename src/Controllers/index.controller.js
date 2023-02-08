@@ -30,7 +30,6 @@ export const inicio = async (req, res) => {
 export const login = (req, res) => {
     if(req.user) {
         const isAdmin = req.user.admin
-        console.log(isAdmin)
         res.redirect('/vista')
     } else {
         res.render('login')
