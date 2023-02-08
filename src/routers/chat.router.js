@@ -6,6 +6,6 @@ import {obtenerChat, chatPorEmail} from '../Controllers/chat.controller.js'
 
 chatRouter.get('/', isAuth, obtenerChat)
 
-chatRouter.get('/:id', isAuth, chatPorEmail)
+chatRouter.get('/:email', isAuth, chatPorEmail)
 
 export default chatRouter
