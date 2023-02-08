@@ -38,8 +38,6 @@ export const delete_producto_carrito = async (req, res) => {
     const id_producto = req.params.id
     const email = req.user.email
 
-    console.log(id_producto, email)
-
     if (id_producto) {
         await api.deleteProducto(email, id_producto)
     }
