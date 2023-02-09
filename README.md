@@ -75,5 +75,5 @@ GET _/process/info_: Da informacion del sistema.
 
 # Variables de entorno
 
-En las variables de entorno se pueden editar los valores que se requieran para hacer pruebas, por ejemplo numeros de telefono y demas.
+En las variables de entorno se pueden editar los valores que se requieran para hacer pruebas, por ejemplo numeros de telefono y correo electronico para notificar registro de usuarios y compras de estos, entre otras cosas.
 La estructura de el .env queda guardado en .env.template
